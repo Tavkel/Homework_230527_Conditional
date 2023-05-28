@@ -2,7 +2,17 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		var inputData = new InputData();
+		int age = 12;
+		int temperature = 7;
+		int speed = 65;
+
+		int cartCapacity = 102;
+		int seats = 60;
+		int passengers = 76;
+
+		var inputData = new InputData(age, temperature, speed);
+		var trainCart = new TrainCart(cartCapacity, seats);
+
 		System.out.println("Задача 1");
 		task1(inputData);
 		System.out.println("\nЗадача 2");
@@ -10,13 +20,13 @@ public class Main
 		System.out.println("\nЗадача 3");
 		task3(inputData);
 		System.out.println("\nЗадача 4");
-		//task4(inputData);
+		task4(inputData);
 		System.out.println("\nЗадача 5");
-		//task5(inputData);
+		task5(inputData);
 		System.out.println("\nЗадача 6");
-		//task6(inputData);
+		task6(trainCart, passengers);
 		System.out.println("\nЗадача 7");
-		//task7(inputData);
+		task7();
 	}
 
 	//Задача 1
@@ -71,6 +81,102 @@ public class Main
 		else
 		{
 			System.out.printf("Ваша скорость составляет %s км/ч. Все в порядкее!\n", inputData.GetSpeed());
+		}
+	}
+
+	//Задача 4
+	//Напишите программу, которая помогает определить, в какое учреждение нужно отправить человека в зависимости от его возраста:
+	// - Если человеку от 2 до 6 лет, то ему нужно ходить в детский сад.
+	// - Если человеку от 7 до 18 лет, то ему нужно ходить в школу.
+	// - Если человеку больше 18 лет, но меньше 24, то его место в университете.
+	// - А если человеку больше 24, то ему пора ходить на работу.
+	//При выполнении каждого условия программа должна выводить в консоль сообщение в формате: «Если возраст человека
+	//равен …, то ему нужно ходить … (в зависимости от возраста дописать нужное)».
+	public static void task4(InputData inputData)
+	{
+		if (inputData.GetAge() >= 2 && inputData.GetAge() <= 6)
+		{
+			System.out.printf("Человеку %s лет. В детский сад\n!", inputData.GetAge());
+		}
+		else if (inputData.GetAge() >= 7 && inputData.GetAge() <= 18)
+		{
+			System.out.printf("Человеку %s лет. В школу!\n", inputData.GetAge());
+		}
+		else if (inputData.GetAge() > 18 && inputData.GetAge() < 24)
+		{
+			System.out.printf("Человеку %s лет. В Университет!\n", inputData.GetAge());
+		}
+		else
+		{
+			System.out.printf("Человеку %s лет. На работу!\n", inputData.GetAge());
+		}
+	}
+
+	//Задача 5
+	//Как правило, на аттракционах действуют ограничения для детей по возрасту:
+	// - Если ребенку меньше 5 лет, то он не может кататься на аттракционе.
+	// - Если ребенку больше 5, но меньше 14 лет, то он может кататься только в сопровождении взрослого. Если взрослого нет, то кататься нельзя.
+	// - Если ребенок старше 14 лет, то он может кататься без сопровождения взрослого.
+	//Напишите программу, которая выводит в консоль сообщение в формате: «Если возраст ребенка равен …, то ему …
+	//(в зависимости от возраста дописать нужное: нельзя кататься на аттракционе, можно кататься на аттракционе в сопровождении / без сопровождения взрослого)».
+	public static void task5(InputData inputData)
+	{
+		if (inputData.GetAge() < 5)
+		{
+			System.out.printf("Человеку %s лет. На аттракцион нельзя\n!", inputData.GetAge());
+		}
+		else if (inputData.GetAge() >= 5 && inputData.GetAge() < 14)
+		{
+			System.out.printf("Человеку %s лет. На аттракцио можно в сопровождении взрослых!\n", inputData.GetAge());
+		}
+		else
+		{
+			System.out.printf("Человеку %s лет. Добро пожаловать на аттракцион!\n", inputData.GetAge());
+		}
+	}
+
+	//Задача 6
+	//Вместимость одного вагона поезда — 102 человека. Вагон рассчитан на 60 сидячих мест, все остальные — стоячие.
+	//С помощью условного оператора и конструкции else напишите программу, которая выводит в консоль сообщение о том,
+	//есть ли место в вагоне, сидячее или стоячее, или вагон уже полностью забит.
+	public static void task6(TrainCart trainCart, int passengers)
+	{
+		if (passengers < trainCart.GetSeatingCapacity())
+		{
+			System.out.println("Еще есть свободные сидячие места!");
+		}
+		else if (passengers >= trainCart.GetSeatingCapacity() && passengers < trainCart.GetCapacity())
+		{
+			System.out.println("Сидячих мест не осталось, придется постоять.");
+		}
+		else
+		{
+			System.out.println("Мест нет. Вагон полон!");
+		}
+	}
+
+	//Задача 7
+	//Даны три числа:
+	//int one;
+	//int two;
+	//int three;
+	//С помощью условного оператора и конструкции else напишите программу, которая вычисляет, какое из трех чисел бо́льшее, и выводит результат в консоль.
+	public static void task7()
+	{
+		int one = 234;
+		int two = 232;
+		int three = 435;
+		if (one > two && one > three)
+		{
+			System.out.println("Первое число самое большое");
+		}
+		else if (two > three)
+		{
+			System.out.println("Второе число самое большое");
+		}
+		else
+		{
+			System.out.println("Третье число самое большое");
 		}
 	}
 }

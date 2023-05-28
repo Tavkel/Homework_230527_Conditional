@@ -1,9 +1,15 @@
 public class InputData
 {
-	private int _age = 65;
-	private int _temperature = 12;
-	private int _speed = 56;
+	private final int _age;
+	private final int _temperature;
+	private final int _speed;
 
+	public InputData(int age, int temperature, int speed)
+	{
+		this._age = age;
+		this._temperature = temperature;
+		this._speed = speed;
+	}
 	public int GetAge()
 	{
 		return this._age;
